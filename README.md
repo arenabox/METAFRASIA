@@ -4,4 +4,4 @@ This study envisions a metatheoretical framework and research agenda for socio-i
 
 ## Usage
 
-See strandbox_full_modelling.ipynb.
+Follow the instructions in strandbox_full_modelling.ipynb to perform topic modelling. We haven't shared the dataset in this repo but we share the experiments results in [results](results) folder. Similarly, we showcase some of the experiments results in strandbox_results.ipynb.
