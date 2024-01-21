@@ -5,3 +5,17 @@ This study envisions a metatheoretical framework and research agenda for socio-i
 ## Usage
 
 Follow the instructions in [strandbox_full_modelling.ipynb](strandbox_full_modelling.ipynb) to perform the topic modelling. We haven't shared the dataset in this repo but we share the experiments results in the [results](results) folder. Similarly, we showcase some of the experiments results in [strandbox_results.ipynb](strandbox_results.ipynb).
+
+For full replication of our experiments on three journals, start by downloading required research
+articles as pdfs. Once downloaded we need to convert them into the format which can be used for 
+data modelling. We have detailed code for this process in [ArenaBox](https://github.com/arenabox/ArenaBox/tree/main) repository. We list some steps
+to make it easier for navigating through that repo.
+
+1. Use [pdf_to_xml.sh](https://github.com/arenabox/ArenaBox/blob/bd79ef99e7d2f19490a2f42a738348bcd80fea85/src/data/collection/pdf_to_xml.sh) script to convert pdfs to xml format.
+2. Once converted to xml, we need to retrieve relevant information such as abstract, introduction, etc. from the scientific articles. To do this we use [sci_articles.py](https://github.com/arenabox/ArenaBox/blob/bd79ef99e7d2f19490a2f42a738348bcd80fea85/src/data/extraction/sci_articles.py) for this purpose. There is an associated [config file](https://github.com/arenabox/ArenaBox/blob/bd79ef99e7d2f19490a2f42a738348bcd80fea85/configs/data/extraction/sci_articles.yaml) to ease this process.
+3. Although, we provide preprocessing and topic modeling in this repository for faster replication but for detailed and pipeline processing Arenabox can also be used.
+4. So for preprocessing the extracted data we use [preprocess/sci_articles.py](https://github.com/arenabox/ArenaBox/blob/bd79ef99e7d2f19490a2f42a738348bcd80fea85/src/data/preprocess/sci_articles.py). Again we utilize [config file](https://github.com/arenabox/ArenaBox/blob/bd79ef99e7d2f19490a2f42a738348bcd80fea85/configs/data/preprocess/sci_articles.yaml) to parametrize this step.
+5. In order to find optimal number of topics in a given text document/s we use [evaluate/using_lda.py](https://github.com/arenabox/ArenaBox/blob/bd79ef99e7d2f19490a2f42a738348bcd80fea85/src/evaluate/using_lda.py). Note that this process can take time based on the upper limit set for number of topics. These limits are defined [here](https://github.com/arenabox/ArenaBox/blob/bd79ef99e7d2f19490a2f42a738348bcd80fea85/configs/evaluate/lda.yaml).
+6. We recommend use of given notebook (strandbox_full_modelling.ipynb) for topic modelling as it incorporates the latest changes to the base model (BERTopic) used for topic modelling.
+7. To use our pipeline for topic modelling, [topic_model.py](https://github.com/arenabox/ArenaBox/blob/bd79ef99e7d2f19490a2f42a738348bcd80fea85/src/train/topic_model.py) can be using along with [config file](https://github.com/arenabox/ArenaBox/blob/bd79ef99e7d2f19490a2f42a738348bcd80fea85/configs/train/base.yaml).
+8. To create temporal trends like hot, cold, evergreen topics in the given text use [temporal_trends.py](https://github.com/arenabox/ArenaBox/blob/bd79ef99e7d2f19490a2f42a738348bcd80fea85/src/analyze/temporal_trends.py). To create collaboration networks use [collaboration.py](https://github.com/arenabox/ArenaBox/blob/bd79ef99e7d2f19490a2f42a738348bcd80fea85/src/vizualize/colaboration.py).
